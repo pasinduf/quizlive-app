@@ -6,9 +6,9 @@ export default defineConfig({
     server: {
         port: 5173,
         proxy: {
-            '/api': 'quizlive.up.railway.app', // 'http://localhost:8080',
+            '/api': 'http://localhost:8080',
             '/socket.io': {
-                target: 'quizlive.up.railway.app', // 'http://localhost:8080',
+                target: 'http://localhost:8080',
                 ws: true,
             },
         },
