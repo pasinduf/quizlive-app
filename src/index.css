@@ -299,6 +299,7 @@ textarea.form-input {
 
 .btn-primary:hover:not(:disabled) {
   background: var(--accent-gradient-hover);
+  color: white;
   box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
   transform: translateY(-1px);
 }
@@ -321,6 +322,7 @@ textarea.form-input {
 
 .btn-success:hover:not(:disabled) {
   background: #059669;
+  color: white;
   transform: translateY(-1px);
 }
 
@@ -331,6 +333,7 @@ textarea.form-input {
 
 .btn-danger:hover:not(:disabled) {
   background: #dc2626;
+  color: white;
   transform: translateY(-1px);
 }
 
@@ -1144,6 +1147,77 @@ tr:hover td {
   justify-content: flex-end;
   gap: var(--space-sm);
   margin-top: var(--space-xl);
+}
+
+/* ===== AUTH ===== */
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-xl);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.auth-title {
+  font-size: 2rem;
+  font-weight: 800;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-sm);
+}
+
+.auth-subtitle {
+  color: var(--text-secondary);
+}
+
+.auth-form {
+  margin-top: var(--space-xl);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper .form-input {
+  padding-right: 3rem;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  transition: color var(--transition-fast);
+  z-index: 2;
+}
+
+.password-toggle:hover {
+  color: var(--text-primary);
 }
 
 /* ===== JOIN PAGE ===== */
