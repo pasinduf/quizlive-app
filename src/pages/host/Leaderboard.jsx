@@ -32,10 +32,10 @@ function Leaderboard() {
         <div className="page-container">
             <header className="page-header text-center">
                 <h1 className="page-title">Leaderboard: {session?.quizId?.title}</h1>
-                <p className="page-subtitle">Top performers based on score and submission speed</p>
+                <p className="page-subtitle">Top performers based on correct answers</p>
             </header>
 
-            <div className="card" style={{ maxWidth: '800px', margin: '0 auto', marginBottom:'20px' }}>
+            <div className="card" style={{ maxWidth: '800px', margin: '0 auto', marginBottom: '20px' }}>
                 {leaderboard.length === 0 ? (
                     <div className="empty-state">
                         <p>No submissions yet for this session.</p>
@@ -55,7 +55,7 @@ function Leaderboard() {
                                     <div className="text-secondary text-sm">Code: {item.playerCode}</div>
                                 </div>
                                 <div className="leaderboard-score">
-                                    {item.correctAnswerCount} {item.correctAnswerCount === 1 ? 'Point' : 'Points'}
+                                    {item.correctAnswerCount} / {session?.totalQuestions || 0}
                                 </div>
                                 <div className="text-muted text-sm ml-lg">
                                     {new Date(item.submissionTime).toLocaleTimeString()}
