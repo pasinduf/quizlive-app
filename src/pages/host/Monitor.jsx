@@ -35,7 +35,10 @@ function Monitor() {
         socket.connect();
         socket.emit('host-join-session', { sessionId });
 
+        const submissionSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
+
         socket.on('submission-received', (data) => {
+            submissionSound.play().catch(e => console.error('Error playing sound:', e));
             setSubmissions((prev) => {
                 // Prevent duplicate real-time events from adding same player
                 if (prev.find(s => s.playerId?._id === data.playerId || s.playerId === data.playerId)) return prev;
@@ -66,7 +69,7 @@ function Monitor() {
         try {
             await api.post(`/sessions/${sessionId}/end`);
             toast.success('Session ended.');
-            window.location.href = `/sessions/${sessionId}/leaderboard`;
+            window.location.href = `/sessions/${sessionId}/leaderboard?reveal=true`;
         } catch (err) {
             toast.error('Failed to end session');
         }
@@ -129,11 +132,17 @@ function Monitor() {
                             <div key={player._id} className={`submission-slot ${submission ? 'filled' : ''}`}>
                                 {submission ? (
                                     <>
-                                        <img
-                                            src={player.profilePicture || `https://ui-avatars.com/api/?name=${player.playerName}`}
-                                            alt={player.playerName}
-                                            className="avatar"
-                                        />
+                                        {player.profilePicture ? (
+                                            <img
+                                                src={player.profilePicture}
+                                                alt={player.playerName}
+                                                className="avatar"
+                                            />
+                                        ) : (
+                                            <div className="avatar avatar-placeholder">
+                                                {player.playerName?.substring(0, 2).toUpperCase()}
+                                            </div>
+                                        )}
                                         <div className="order-num">{subIndex}️⃣</div>
                                         <div className="player-name">{player.playerName}</div>
                                     </>

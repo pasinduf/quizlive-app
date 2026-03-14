@@ -28,15 +28,16 @@ function Quiz() {
                     return;
                 }
 
-                const { data: qData } = await api.get(`/questions/session/${sessionId}?role=player`);
-                setQuestions(qData);
-
                 // Check if player already submitted
                 const { data: subCheck } = await api.get(`/submissions/check/${sessionId}/${player._id}`);
                 if (subCheck.submitted) {
                     navigate('/thankyou');
                     return;
                 }
+                
+                const { data: qData } = await api.get(`/questions/session/${sessionId}?role=player`);
+                setQuestions(qData);
+
 
                 const { data: sData } = await api.get(`/sessions/${sessionId}`);
                 if (sData.status === 'ended') {
@@ -188,7 +189,7 @@ function Quiz() {
                         className="btn btn-primary"
                         onClick={() => setCurrentPage(currentPage + 1)}
                     >
-                        Next Page
+                        Next
                     </button>
                 )}
             </div>

@@ -575,27 +575,51 @@ tr:hover td {
   font-weight: 900;
   min-width: 45px;
   text-align: center;
+  color: var(--text-secondary);
+  transition: all var(--transition-normal);
 }
 
 .leaderboard-item:nth-child(1) .leaderboard-rank {
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  background: linear-gradient(135deg, #ffd700, #ffae00);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
+  font-size: 2rem;
 }
 
 .leaderboard-item:nth-child(2) .leaderboard-rank {
-  background: linear-gradient(135deg, #d1d5db, #9ca3af);
+  background: linear-gradient(135deg, #e0e0e0, #a0a0a0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(224, 224, 224, 0.3));
+  font-size: 1.75rem;
 }
 
 .leaderboard-item:nth-child(3) .leaderboard-rank {
-  background: linear-gradient(135deg, #d97706, #b45309);
+  background: linear-gradient(135deg, #cd7f32, #a0522d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(205, 127, 50, 0.3));
+  font-size: 1.6rem;
+}
+
+/* Specific border colors for top 3 items */
+.leaderboard-item:nth-child(1) {
+  border-color: rgba(255, 215, 0, 0.3);
+  background: rgba(255, 215, 0, 0.05);
+}
+
+.leaderboard-item:nth-child(2) {
+  border-color: rgba(224, 224, 224, 0.2);
+  background: rgba(224, 224, 224, 0.03);
+}
+
+.leaderboard-item:nth-child(3) {
+  border-color: rgba(205, 127, 50, 0.2);
+  background: rgba(205, 127, 50, 0.03);
 }
 
 .leaderboard-info {
@@ -1294,5 +1318,159 @@ tr:hover td {
 
   .submission-grid {
     grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+  }
+}
+
+/* ===== REVEAL ANIMATIONS ===== */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInDown 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes slideInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Stagger delay utilities */
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+.delay-5 {
+  animation-delay: 0.5s;
+}
+
+.delay-6 {
+  animation-delay: 0.6s;
+}
+
+.delay-7 {
+  animation-delay: 0.7s;
+}
+
+.delay-8 {
+  animation-delay: 0.8s;
+}
+
+.delay-9 {
+  animation-delay: 0.9s;
+}
+
+.delay-10 {
+  animation-delay: 1s;
+}
+
+.anticipation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  gap: var(--space-lg);
+}
+
+.anticipation-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--bg-glass);
+  border-top-color: var(--accent-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.anticipation-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  from {
+    opacity: 0.6;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== RESPONSIVE LEADERBOARD ===== */
+@media (max-width: 640px) {
+  .leaderboard-item {
+    padding: var(--space-md);
+    gap: var(--space-sm);
+  }
+
+  .leaderboard-rank {
+    font-size: 1.25rem;
+    min-width: 32px;
+  }
+
+  .avatar.avatar-lg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .leaderboard-name {
+    font-size: 0.95rem;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .leaderboard-score {
+    font-size: 1.1rem;
+  }
+
+  .leaderboard-item .text-muted {
+    display: none;
+    /* Hide time on small mobile to save space */
+  }
+}
+
+@media (max-width: 400px) {
+  .leaderboard-item {
+    padding: var(--space-sm);
+  }
+
+  .leaderboard-name {
+    max-width: 80px;
+  }
+
+  .leaderboard-rank {
+    font-size: 1.1rem;
+    min-width: 24px;
   }
 }
