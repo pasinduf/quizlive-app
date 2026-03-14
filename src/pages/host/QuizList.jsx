@@ -146,13 +146,16 @@ function QuizList() {
                 Created: {new Date(quiz.createdAt).toLocaleDateString()}
               </p>
               <div className="flex gap-sm">
-                <Link to={`/quizzes/${quiz._id}/questions`} className="btn btn-primary btn-sm flex-1">
+               
+                {!quiz.hasActiveSession &&
+                <>
+                 <Link to={`/quizzes/${quiz._id}/questions`} className="btn btn-primary btn-sm flex-1">
                   Edit Questions
                 </Link>
-                {!quiz.hasActiveSession &&
                   <button className="btn btn-icon btn-secondary" style={{ color: "var(--danger)" }} onClick={() => deleteQuiz(quiz._id)}>
                     🗑️
                   </button>
+                </>
                 }
 
                 {!quiz.hasActiveSession && (

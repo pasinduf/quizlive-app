@@ -178,7 +178,7 @@ function Players() {
                                             <img src={player.profilePicture} alt={player.playerName} className="avatar" />
                                         ) : (
                                             <div className="avatar avatar-placeholder">
-                                                {player.playerName.charAt(0)}
+                                                {player.playerName.substring(0, 2).toUpperCase()}
                                             </div>
                                         )}
                                     </td>

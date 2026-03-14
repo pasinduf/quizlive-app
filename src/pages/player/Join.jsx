@@ -33,10 +33,17 @@ function Join() {
         setError('');
 
         try {
+
             const { data: player } = await api.post('/players/validate', {
                 playerCode: playerCode.toUpperCase(),
                 sessionId,
             });
+
+             const { data: subCheck } = await api.get(`/submissions/check/${sessionId}/${player._id}`);
+             if (subCheck.submitted) {
+               navigate('/thankyou');
+               return;
+             }
 
             // Store player and session info in localStorage
             localStorage.setItem(`quiz_player_${sessionId}`, JSON.stringify(player));
