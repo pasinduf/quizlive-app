@@ -77,7 +77,7 @@ function QuizList() {
       async () => {
         try {
           await api.post('/sessions', { quizId });
-          toast.success('Session started!');
+          toast.success('Session Created!');
           navigate('/sessions');
         } catch (err) {
           toast.error(err.response?.data?.error || 'Failed to start session');
