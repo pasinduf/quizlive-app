@@ -35,15 +35,16 @@ function Quiz() {
                     return;
                 }
                 
-                const { data: qData } = await api.get(`/questions/session/${sessionId}?role=player`);
-                setQuestions(qData);
-
-
                 const { data: sData } = await api.get(`/sessions/${sessionId}`);
                 if (sData.status === 'ended') {
                     toast.error('This session has already ended.');
                     navigate(`/join/${sessionId}`);
                 }
+                
+                const { data: qData } = await api.get(`/questions/session/${sessionId}?role=player`);
+                setQuestions(qData);
+
+
             } catch (err) {
                 console.error('Error fetching questions:', err);
             } finally {
