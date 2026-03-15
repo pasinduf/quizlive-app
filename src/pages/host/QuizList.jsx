@@ -135,28 +135,21 @@ function QuizList() {
             <div key={quiz._id} className="card quiz-card">
               <div className="card-header pb-sm">
                 <h3 className="card-title">{quiz.title}</h3>
-                {quiz.hasActiveSession && (
-                  <span className="badge badge-active">Running</span>
-                )}
+                {quiz.hasActiveSession && <span className="badge badge-active">{quiz.currentSessionStatus}</span>}
               </div>
-              <p className="text-secondary text-sm">
-                {quiz.questionCount || 0} Questions
-              </p>
-              <p className="text-secondary text-sm mb-lg">
-                Created: {new Date(quiz.createdAt).toLocaleDateString()}
-              </p>
+              <p className="text-secondary text-sm">{quiz.questionCount || 0} Questions</p>
+              <p className="text-secondary text-sm mb-lg">Created: {new Date(quiz.createdAt).toLocaleDateString()}</p>
               <div className="flex gap-sm">
-               
-                {!quiz.hasActiveSession &&
-                <>
-                 <Link to={`/quizzes/${quiz._id}/questions`} className="btn btn-primary btn-sm flex-1">
-                  Edit Questions
-                </Link>
-                  <button className="btn btn-icon btn-secondary" style={{ color: "var(--danger)" }} onClick={() => deleteQuiz(quiz._id)}>
-                    🗑️
-                  </button>
-                </>
-                }
+                {!quiz.hasActiveSession && (
+                  <>
+                    <Link to={`/quizzes/${quiz._id}/questions`} className="btn btn-primary btn-sm flex-1">
+                      Edit Questions
+                    </Link>
+                    <button className="btn btn-icon btn-secondary" style={{ color: "var(--danger)" }} onClick={() => deleteQuiz(quiz._id)}>
+                      🗑️
+                    </button>
+                  </>
+                )}
 
                 {!quiz.hasActiveSession && (
                   <button className="btn btn-secondary btn-sm" disabled={quiz.hasActiveSession} onClick={() => startSession(quiz._id)}>
